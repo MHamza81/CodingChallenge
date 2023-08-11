@@ -6,8 +6,7 @@ export default class GeoJsonController {
   static async getGeoJsonFeatures(req, res) {
     const osmData = await OsmDataRequestService.fetchOsmData('-0.150464, 51.500521, -0.141806, 51.503142');
 
-    const osmToJsonService = new OsmToJsonService(osmData);
-    const jsonData = osmToJsonService.toJSON();
+    const jsonData = OsmToJsonService.toJSON(osmData);
 
     const response = ResponseService.buildResponse(200, jsonData);
 

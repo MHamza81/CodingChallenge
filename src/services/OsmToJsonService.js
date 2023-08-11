@@ -1,9 +1,7 @@
-export default class OsmToJsonService {
-  constructor(osmData) {
-    this.osmData = osmData;
-  }
+import osmtogeojson from 'osmtogeojson';
 
-  toJSON() {
-    return this.osmData;
+export default class OsmToJsonService {
+  static toJSON(osmData) {
+    return osmtogeojson(osmData);
   }
 }
