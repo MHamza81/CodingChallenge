@@ -1,12 +1,10 @@
+import OsmDataRequestService from '../services/OsmDataRequestService.js';
 import OsmToJsonService from '../services/OsmToJsonService.js';
-import RequestService from '../services/RequestService.js';
 import ResponseService from '../services/ResponseService.js';
 
 export default class GeoJsonController {
-  static getGeoJsonFeatures(req, res) {
-    const apiUrl = 'https://abc.com';
-    const requestService = new RequestService(apiUrl);
-    const osmData = requestService.fetchData();
+  static async getGeoJsonFeatures(req, res) {
+    const osmData = await OsmDataRequestService.fetchOsmData('-0.150464, 51.500521, -0.141806, 51.503142');
 
     const osmToJsonService = new OsmToJsonService(osmData);
     const jsonData = osmToJsonService.toJSON();

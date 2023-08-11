@@ -1,9 +1,9 @@
-export default class RequestService {
-  constructor(url) {
-    this.url = url;
-  }
+import axios from 'axios';
 
-  fetchData() {
-    return this.url;
+export default class RequestService {
+  static async fetchData(url, options = {}) {
+    const response = await axios.get(url, options);
+
+    return response.data;
   }
 }
