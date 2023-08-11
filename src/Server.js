@@ -1,4 +1,5 @@
 import express from 'express';
+import MainRouter from './routes/MainRouter.js';
 
 export default class Server {
   constructor() {
@@ -12,7 +13,7 @@ export default class Server {
   }
 
   routerConfig() {
-    this.app.use('/', (req, res) => res.send('Working'));
+    this.app.use('/', new MainRouter().router);
   }
 
   async start(port) {
