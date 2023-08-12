@@ -4,7 +4,7 @@ export default class ResponseService {
   }
 
   sendResponse() {
-    return this.res.status(this.status).send(this.message).json();
+    return this.res.status(this.status).json(this.message);
   }
 
   buildResponse(statusCode, message) {

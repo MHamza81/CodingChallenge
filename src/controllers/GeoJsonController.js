@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { validationResult } from 'express-validator';
 
 import OsmDataRequestService from '../services/OsmDataRequestService.js';
@@ -26,7 +27,12 @@ export default class GeoJsonController {
       return responseService.sendResponse();
     } catch (err) {
       console.log(err);
-      responseService.buildResponse(502, 'Internal Server Error');
+      if (err instanceof AxiosError) {
+        const { response } = err;
+        responseService.buildResponse(response.status, { error: response.data });
+      } else {
+        responseService.buildResponse(502, { error: 'Internal Server Error' });
+      }
 
       return responseService.sendResponse();
     }
