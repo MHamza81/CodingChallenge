@@ -2,7 +2,7 @@ import RequestService from './RequestService.js';
 
 export default class OsmDataRequestService {
   static fetchOsmData(bbox) {
-    const apiUrl = 'https://www.openstreetmap.org/api/0.6/map';
+    const apiUrl = process.env.API_URL;
     const options = {
       params: {
         bbox,

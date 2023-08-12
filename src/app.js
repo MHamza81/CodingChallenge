@@ -1,8 +1,7 @@
 import Server from './Server.js';
 
-const port = Number(process.env.PORT || '4000');
-
 const server = new Server();
+const port = Number(process.env.PORT || '4000');
 
 const starter = async () => {
   try {
