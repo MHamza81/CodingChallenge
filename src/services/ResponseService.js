@@ -4,13 +4,11 @@ export default class ResponseService {
   }
 
   sendResponse() {
-    return this.res.send(this.message).json();
+    return this.res.status(this.status).send(this.message).json();
   }
 
-  buildResponse(status, message) {
-    this.message = {
-      statusCode: status,
-      message,
-    };
+  buildResponse(statusCode, message) {
+    this.status = statusCode;
+    this.message = message;
   }
 }
