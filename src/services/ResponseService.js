@@ -1,10 +1,14 @@
 export default class ResponseService {
-  static sendResponse(res, data) {
-    return res.send(data).json();
+  constructor(res) {
+    this.res = res;
   }
 
-  static buildResponse(status, message) {
-    return {
+  sendResponse() {
+    return this.res.send(this.message).json();
+  }
+
+  buildResponse(status, message) {
+    this.message = {
       statusCode: status,
       message,
     };

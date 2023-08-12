@@ -1,15 +1,27 @@
+import { validationResult } from 'express-validator';
+
 import OsmDataRequestService from '../services/OsmDataRequestService.js';
 import OsmToJsonService from '../services/OsmToJsonService.js';
 import ResponseService from '../services/ResponseService.js';
 
 export default class GeoJsonController {
   static async getGeoJsonFeatures(req, res) {
-    const osmData = await OsmDataRequestService.fetchOsmData('-0.150464, 51.500521, -0.141806, 51.503142');
+    const responseService = new ResponseService(res);
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      responseService.buildResponse(400, { errors: errors.array() });
+
+      return responseService.sendResponse();
+    }
+
+    const { bbox } = req.query;
+    const osmData = await OsmDataRequestService.fetchOsmData(bbox);
 
     const jsonData = OsmToJsonService.toJSON(osmData);
 
-    const response = ResponseService.buildResponse(200, jsonData);
+    responseService.buildResponse(200, jsonData);
 
-    return ResponseService.sendResponse(res, response);
+    return responseService.sendResponse();
   }
 }
