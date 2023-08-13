@@ -1,0 +1,40 @@
+{
+  "features": [
+     {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "way/1",
+      "properties": {
+        "area": "yes",
+        "id": "way/1"
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}
