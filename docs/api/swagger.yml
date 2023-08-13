@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: GeoJSON Features
+  version: 1.0.0
+  description: API documentation for the GeoJSON Features application.
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+
+paths:
+  /geojsonfeatures:
+    get:
+      summary: Get GeoJSON features
+      description: Retrieve GeoJSON features based on bounding box.
+      parameters:
+        - name: bbox
+          in: query
+          description: Bounding box in the format minLon,minLat,maxLon,maxLat
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with GeoJSON features.
+        '400':
+          description: Bad request due to validation error.
+        '502':
+          description: Internal server error.
